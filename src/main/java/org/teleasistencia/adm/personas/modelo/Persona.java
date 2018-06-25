@@ -3,13 +3,22 @@ package org.teleasistencia.adm.personas.modelo;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import javax.persistence.*;
 import java.util.Date;
 
 @Data
+@Entity
 @Accessors(chain = true)
 public class Persona {
 
+    // Id
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idPersona")
     private Integer id;
+
+    // Atributos
 
     private Integer idGenero;
 
@@ -42,4 +51,10 @@ public class Persona {
     private String email;
 
     private Integer estado;
+
+    // Relaciones
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idGenero", referencedColumnName = "idCatalogo", insertable = false, updatable = false)
+    private Catalogo genero;
 }

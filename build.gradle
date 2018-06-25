@@ -4,6 +4,7 @@ buildscript {
 
         lombokVersion = '1.18.0'
         springBootVersion = '2.0.3.RELEASE'
+        hibernateORMVersion = '5.3.1.Final'
     }
 
     repositories {
@@ -38,6 +39,8 @@ dependencies {
     compileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
 
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springBootVersion
+
+    compile group: 'org.hibernate', name: 'hibernate-core', version: hibernateORMVersion
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }

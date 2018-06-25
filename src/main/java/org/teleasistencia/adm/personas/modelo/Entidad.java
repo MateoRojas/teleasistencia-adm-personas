@@ -3,11 +3,22 @@ package org.teleasistencia.adm.personas.modelo;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import javax.persistence.*;
+import java.util.Collection;
+
 @Data
+@Entity
 @Accessors(chain = true)
 public class Entidad {
 
+    // Id
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idEntidad")
     private Integer id;
+
+    // Atributos
 
     private String nombre;
 
@@ -28,4 +39,9 @@ public class Entidad {
     private String email;
 
     private Integer estado;
+
+    // Relaciones
+
+    @OneToMany(mappedBy = "entidad")
+    private Collection<EntidadDispositivo> entidadDispositivoCol;
 }

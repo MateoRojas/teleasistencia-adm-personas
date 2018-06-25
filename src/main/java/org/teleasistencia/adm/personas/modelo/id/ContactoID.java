@@ -4,11 +4,13 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 import javax.persistence.Embeddable;
+import java.io.Serializable;
+
 
 @Data
 @Accessors(chain = true)
 @Embeddable
-public class ContactoID {
+public class ContactoID implements Serializable {
 
     private Integer idPersona;
 

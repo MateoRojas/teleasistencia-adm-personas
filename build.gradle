@@ -8,6 +8,7 @@ buildscript {
         hibernateORMVersion = '5.3.1.Final'
         tomcatDbcpVersion = '9.0.8'
         mysqlDriverVersion = '8.0.11'
+        queryDSLVersion = '4.2.1'
     }
 
     repositories {
@@ -26,6 +27,7 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply from: 'querydsl.gradle'
 
 group 'org.teleasistencia'
 version '1.0.0-SNAPSHOT'
@@ -39,7 +41,7 @@ repositories {
 
 dependencies {
 
-    compileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+    compile group: 'org.projectlombok', name: 'lombok', version: lombokVersion
 
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springBootVersion
     compile group: 'org.springframework', name: 'spring-orm', version: springFrameworkVersion
@@ -49,6 +51,11 @@ dependencies {
     compile group: 'org.hibernate', name: 'hibernate-core', version: hibernateORMVersion
 
     compile group: 'mysql', name: 'mysql-connector-java', version: mysqlDriverVersion
+
+    compile group: 'com.querydsl', name: 'querydsl-core', version: queryDSLVersion
+    compile group: 'com.querydsl', name: 'querydsl-jpa', version: queryDSLVersion
+    compile group: 'com.querydsl', name: 'querydsl-apt', version: queryDSLVersion
+    compile group: 'com.querydsl', name: 'querydsl-sql', version: queryDSLVersion
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }

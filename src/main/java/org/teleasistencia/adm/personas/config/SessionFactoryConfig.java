@@ -1,5 +1,6 @@
 package org.teleasistencia.adm.personas.config;
 
+import com.querydsl.jpa.hibernate.HibernateQueryFactory;
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +15,12 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 public class SessionFactoryConfig {
+
+    @Bean
+    public HibernateQueryFactory hibernateQueryFactory(LocalSessionFactoryBean sessionFactory) {
+
+        return new HibernateQueryFactory(() -> sessionFactory.getObject().getCurrentSession());
+    }
 
     @Bean
     public LocalSessionFactoryBean sessionFactory(DataSource dataSource) {
@@ -43,11 +50,7 @@ public class SessionFactoryConfig {
     @Bean
     public PlatformTransactionManager transactionManager(LocalSessionFactoryBean sessionFactory) {
 
-        HibernateTransactionManager transactionManager = new HibernateTransactionManager();
-
-        transactionManager.setSessionFactory(sessionFactory.getObject());
-
-        return transactionManager;
+        return new HibernateTransactionManager(sessionFactory.getObject());
     }
 
     public final Properties hibernateProperties() {

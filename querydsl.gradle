@@ -1,8 +1,13 @@
 sourceSets {
-    generated
+    querydsl {
+        java {
+            srcDirs "src/querydsl/java"
+        }
+    }
 }
 
-sourceSets.generated.java.srcDirs = ['src/querydsl/java']
+sourceSets.main.java.srcDirs += "src/querydsl/java"
+sourceSets.querydsl.java.srcDirs += 'src/querydsl/java'
 
 configurations {
     querydslapt
@@ -15,19 +20,14 @@ task generateQueryDSL(type: JavaCompile, group: 'build', description: 'Generates
             "-proc:only",
             "-processor", "com.querydsl.apt.jpa.JPAAnnotationProcessor"
     ]
-    destinationDir = sourceSets.generated.java.srcDirs.iterator().next()
+    destinationDir = sourceSets.querydsl.java.srcDirs.iterator().next()
 }
 
 compileJava {
     dependsOn generateQueryDSL
-    source generateQueryDSL.destinationDir
-}
-
-compileGeneratedJava {
-    dependsOn generateQueryDSL
-    classpath += sourceSets.main.runtimeClasspath
+    source += sourceSets.querydsl.java.srcDirs
 }
 
 clean {
-    delete sourceSets.generated.java.srcDirs
+    delete sourceSets.querydsl.java.srcDirs
 }

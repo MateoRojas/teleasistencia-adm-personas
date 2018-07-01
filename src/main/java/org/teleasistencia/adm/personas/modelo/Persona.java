@@ -50,7 +50,11 @@ public class Persona {
 
     private String email;
 
+    // Auditoria
+
     private Integer estado;
+
+    private Date fechaCreacion;
 
     // Relaciones
 

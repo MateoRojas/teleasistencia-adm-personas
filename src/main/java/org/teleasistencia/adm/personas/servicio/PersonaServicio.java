@@ -10,7 +10,6 @@ import org.teleasistencia.adm.personas.excepcion.TipoError;
 import org.teleasistencia.adm.personas.modelo.Persona;
 import org.teleasistencia.adm.personas.persistencia.IPersonaRepositorio;
 import org.teleasistencia.adm.personas.vo.consultas.PersonaVO;
-import org.teleasistencia.adm.personas.vo.respuestas.RecursoCreadoVO;
 
 import java.util.Date;
 
@@ -27,7 +26,7 @@ public class PersonaServicio {
     @Autowired
     private ModelMapper mapper;
 
-    public RecursoCreadoVO<Integer, PersonaVO> crearPersona(PersonaVO personaVO) {
+    public PersonaVO crearPersona(PersonaVO personaVO) {
 
         this.validacionServicio.validarObjeto(personaVO, TipoError.PERONSA_NULA);
 
@@ -35,7 +34,9 @@ public class PersonaServicio {
 
         Persona persona = this.guardarPersona(personaVO);
 
-        return new RecursoCreadoVO<>(persona.getId(), personaVO, persona.getFechaCreacion(), persona.getEstado());
+        return personaVO.setId(persona.getId())
+                .setFechaCreacion(persona.getFechaCreacion())
+                .setEstado(persona.getEstado());
     }
 
     private void validarNumeroCedula(String cedula) {

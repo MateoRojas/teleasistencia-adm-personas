@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.teleasistencia.adm.personas.servicio.PersonaServicio;
 import org.teleasistencia.adm.personas.vo.consultas.PersonaVO;
-import org.teleasistencia.adm.personas.vo.respuestas.RecursoCreadoVO;
 
 @RestController
 @RequestMapping("/personas")
@@ -19,12 +18,10 @@ public class PersonaControlador {
     private PersonaServicio personaServicio;
 
     @PostMapping
-    public ResponseEntity<RecursoCreadoVO<Integer, PersonaVO>> crearPersona(@RequestBody PersonaVO persona) {
-
-        RecursoCreadoVO<Integer, PersonaVO> personaCreada = this.personaServicio.crearPersona(persona);
+    public ResponseEntity<PersonaVO> crearPersona(@RequestBody PersonaVO persona) {
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(personaCreada);
+                .body(this.personaServicio.crearPersona(persona));
     }
 }

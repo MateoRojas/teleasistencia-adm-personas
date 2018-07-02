@@ -15,48 +15,66 @@ import java.util.Date;
 @Accessors(chain = true)
 public class PersonaVO {
 
+    private Integer id;
+
     @NotNull
     @Positive
     private Integer idGenero;
 
-    @NotBlank
+    @NotBlank(message = "{personavo.primernombre.notblank}")
     private String primerNombre;
 
     private String segundoNombre;
 
-    @NotBlank
+    @NotBlank(message = "{personavo.primerapellido.notblank}")
     private String primerApellido;
 
     private String segundoApellido;
 
-    @NotBlank
-    @Pattern(regexp = "^\\d{10}$")
+    @NotBlank(message = "{personavo.cedula.notblank}")
+    @Pattern(
+            regexp = "^\\d{10}$",
+            message = "{personavo.cedula.pattern}"
+    )
     private String cedula;
 
-    @Past
+    @Past(message = "{personavo.fechanacimiento.past}")
     private Date fechaNacimiento;
 
-    @NotBlank
+    @NotBlank(message = "{personavo.calleprincipal.notblank}")
     private String callePrincipal;
 
     private String calleSecundaria;
 
-    @NotBlank
+    @NotBlank(message = "{personavo.numeraciondomicilio.notblank}")
     private String numeracionDomicilio;
 
-    @NotBlank
+    @NotBlank(message = "{personavo.referencia.notblank}")
     private String referencia;
 
-    @NotBlank(message =  "{consultas.personavo.telefonoprincipal.notblank}")
-    @Pattern(regexp = "^\\d{7,10}$", message = "{consultas.personavo.telefonoprincipal.pattern}")
+    @NotBlank(message =  "{personavo.telefonoprincipal.notblank}")
+    @Pattern(
+            regexp = "^\\d{7,10}$",
+            message = "{personavo.telefonoprincipal.pattern}"
+    )
     private String telefonoPrincipal;
 
-    @Pattern(regexp = "^\\d{7,10}$")
+    @Pattern(
+            regexp = "^\\d{7,10}$",
+            message = "{personavo.telefonosecundario.pattern}"
+    )
     private String telefonoSecundario;
 
-    @Pattern(regexp = "^\\d{10}$")
+    @Pattern(
+            regexp = "^\\d{10}$",
+            message = "{personavo.celular.pattern}"
+    )
     private String celular;
 
-    @Email
+    @Email(message = "{validacion.email}")
     private String email;
+
+    private Date fechaCreacion;
+
+    private Integer estado;
 }

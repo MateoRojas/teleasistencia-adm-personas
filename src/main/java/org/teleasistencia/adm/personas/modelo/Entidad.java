@@ -5,6 +5,7 @@ import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Date;
 
 @Data
 @Entity
@@ -38,7 +39,11 @@ public class Entidad {
 
     private String email;
 
+    // Auditoria
+
     private Integer estado;
+
+    private Date fechaCreacion;
 
     // Relaciones
 

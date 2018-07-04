@@ -3,8 +3,14 @@ package org.teleasistencia.adm.personas.modelo;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.Collection;
+import java.util.Date;
 
 @Data
 @Entity
@@ -40,7 +46,11 @@ public class Dispositivo {
 
     private String rutaImagenMapa;
 
+    // Auditoria
+
     private Integer estado;
+
+    private Date fechaCreacion;
 
     // Relaciones
 

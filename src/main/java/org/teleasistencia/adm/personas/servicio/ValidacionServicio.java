@@ -37,4 +37,16 @@ public class ValidacionServicio {
 
         return Boolean.TRUE;
     }
+
+    public Boolean validarBlankString(String string, TipoError error) {
+
+        this.validarNulo(string, error);
+
+        if(string.trim().isEmpty()) {
+
+            TeleasistenciaException.throwException(error.build());
+        }
+
+        return Boolean.TRUE;
+    }
 }

@@ -6,40 +6,22 @@ import lombok.experimental.Accessors;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 import java.util.Date;
 
 @Data
 @Accessors(chain = true)
-public class PersonaVO {
+public class EntidadVO {
 
     private Integer id;
 
     @NotNull
     @Positive
-    private Integer idGenero;
+    private Integer idTipoEntidad;
 
-    @NotBlank(message = "{personavo.primernombre.notblank}")
-    private String primerNombre;
-
-    private String segundoNombre;
-
-    @NotBlank(message = "{personavo.primerapellido.notblank}")
-    private String primerApellido;
-
-    private String segundoApellido;
-
-    @NotBlank(message = "{personavo.cedula.notblank}")
-    @Pattern(
-            regexp = "^\\d{10}$",
-            message = "{personavo.cedula.pattern}"
-    )
-    private String cedula;
-
-    @Past(message = "{personavo.fechanacimiento.past}")
-    private Date fechaNacimiento;
+    @NotBlank(message = "{entidadvo.nombre.notblank}")
+    private String nombre;
 
     @NotBlank(message = "{validacion.calleprincipal.notblank}")
     private String callePrincipal;
@@ -52,19 +34,16 @@ public class PersonaVO {
     @NotBlank(message = "{validacion.referencia.notblank}")
     private String referencia;
 
-    @NotBlank(message =  "{validacion.telefonoprincipal.notblank}")
+    @NotBlank(message = "{validacion.telefonoprincipal.notblank}")
     @Pattern(
             regexp = "^\\d{7,10}$",
-            message = "{validacion.telefonoprincipal.pattern}"
+            message = "{personavo.telefonoprincipal.pattern}"
     )
     private String telefonoPrincipal;
 
-    @Pattern(
-            regexp = "^\\d{7,10}$",
-            message = "{validacion.telefonosecundario.pattern}"
-    )
     private String telefonoSecundario;
 
+    @NotBlank(message = "{validacion.celular.notblank}")
     @Pattern(
             regexp = "^\\d{10}$",
             message = "{validacion.celular.pattern}"
@@ -72,9 +51,11 @@ public class PersonaVO {
     private String celular;
 
     @Email(message = "{validacion.email}")
+    @NotBlank(message = "{validacion.email.notblank}")
     private String email;
+
+    private Integer estado;
 
     private Date fechaCreacion;
 
-    private Integer estado;
 }

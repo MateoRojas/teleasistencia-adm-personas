@@ -17,7 +17,7 @@ public class PersonaVO {
 
     private Integer id;
 
-    @NotNull
+    @NotNull(message = "{personavo.idgenero.notnull}")
     @Positive
     private Integer idGenero;
 

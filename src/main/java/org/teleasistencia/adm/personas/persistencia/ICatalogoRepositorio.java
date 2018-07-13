@@ -8,7 +8,7 @@ import org.teleasistencia.adm.personas.vo.respuestas.CatalogoVO;
 
 import java.util.Collection;
 
-public interface CatalogoRepositorio extends CrudRepository<Catalogo, Integer> {
+public interface ICatalogoRepositorio extends CrudRepository<Catalogo, Integer> {
 
     @Query("SELECT new org.teleasistencia.adm.personas.vo.respuestas.CatalogoVO(c.id, c.abreviacion, c.nombre, c.descripcion) " +
             "FROM Catalogo c " +

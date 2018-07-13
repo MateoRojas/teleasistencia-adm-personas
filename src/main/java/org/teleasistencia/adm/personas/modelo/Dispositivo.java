@@ -5,6 +5,7 @@ import lombok.experimental.Accessors;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -54,12 +55,12 @@ public class Dispositivo {
 
     // Relaciones
 
-    @OneToMany(mappedBy = "dispositivo")
+    @OneToMany(mappedBy = "dispositivo", fetch = FetchType.LAZY)
     private Collection<EntidadDispositivo> entidadDispositivoCol;
 
-    @OneToMany(mappedBy = "dispositivo")
+    @OneToMany(mappedBy = "dispositivo", fetch = FetchType.LAZY)
     private Collection<Beneficiario> beneficiarioCol;
 
-    @OneToMany(mappedBy = "dispositivo")
+    @OneToMany(mappedBy = "dispositivo", fetch = FetchType.LAZY)
     private Collection<Contacto> contactoCol;
 }

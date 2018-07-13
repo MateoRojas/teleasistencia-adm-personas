@@ -4,7 +4,12 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 import org.teleasistencia.adm.personas.modelo.id.ContactoID;
 
-import javax.persistence.*;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import java.util.Date;
 
 @Data
 @Entity
@@ -22,7 +27,11 @@ public class Contacto {
 
     private Double distacia;
 
+    // Auditoria
+
     private Integer estado;
+
+    private Date fechaCreacion;
 
     // Relaciones
 

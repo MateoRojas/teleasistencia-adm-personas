@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.teleasistencia.adm.personas.excepcion.TipoError;
-import org.teleasistencia.adm.personas.persistencia.CatalogoRepositorio;
+import org.teleasistencia.adm.personas.persistencia.ICatalogoRepositorio;
 import org.teleasistencia.adm.personas.vo.respuestas.CatalogoVO;
 
 import java.util.Collection;
@@ -17,7 +17,7 @@ public class CatalogoServicio {
     private ValidacionServicio validacionServicio;
 
     @Autowired
-    private CatalogoRepositorio catalogoRepositorio;
+    private ICatalogoRepositorio catalogoRepositorio;
 
     public Collection<CatalogoVO> buscarCatalogoPorAbreviacionCategoria(String abreviacion) {
 

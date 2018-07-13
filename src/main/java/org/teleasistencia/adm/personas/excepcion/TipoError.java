@@ -15,7 +15,11 @@ public enum TipoError implements Payload {
     NUMERO_DISPOSITIVO_REPETIDO(CategoriaError.REQUERIMIENTO_INVALIDO, "Error al guardar el dispositivo", "Ya existe un dispositivo con el mismo numero"),
     ENTIDAD_NULA(CategoriaError.REQUERIMIENTO_INVALIDO, "Error de objeto nulo", "La entidad enviada no puede ser nula"),
     NOMBRE_ENTIDAD_REPETIDO(CategoriaError.REQUERIMIENTO_INVALIDO, "Error al guardar la entidad", "Ya existe una entidad con el mismo nombre"),
-    ABREVIACION_VACIA(CategoriaError.REQUERIMIENTO_INVALIDO, "Error al buscar en catalogo", "La abreviacion no puede estar vacia");
+    ABREVIACION_VACIA(CategoriaError.REQUERIMIENTO_INVALIDO, "Error al buscar en catalogo", "La abreviacion no puede estar vacia"),
+    CONTACTO_NULO(CategoriaError.REQUERIMIENTO_INVALIDO, "Error de objeto nulo", "El contacto no puede ser nulo"),
+    ID_DISPOSITIVO_NULO(CategoriaError.REQUERIMIENTO_INVALIDO, "Error al buscar los contactos", "El id del dispositivo no puede ser nulo"),
+    PERSONA_NO_ENCONTRADA(CategoriaError.REQUERIMIENTO_INVALIDO, "Error al buscar la persona", "No se encontro ninguna persona asociada al id provisto"),
+    PERSONA_ID_NULO(CategoriaError.REQUERIMIENTO_INVALIDO, "Error al actulizar la persona", "La persona no puede tener un id vacio");
 
     private CategoriaError categoria;
 

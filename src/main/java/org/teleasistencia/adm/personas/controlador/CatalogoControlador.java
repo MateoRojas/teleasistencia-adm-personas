@@ -20,7 +20,7 @@ public class CatalogoControlador {
 
     @GetMapping(value = "/categoria")
     public ResponseEntity<Collection<CatalogoVO>> buscarCatalogoPorAbreviacionCategoria(
-            @RequestParam("abreviacion") String abreviacion) {
+            @RequestParam(value = "abreviacion", required = false) String abreviacion) {
 
         return ResponseEntity
                 .ok(this.catalogoServicio.buscarCatalogoPorAbreviacionCategoria(abreviacion));

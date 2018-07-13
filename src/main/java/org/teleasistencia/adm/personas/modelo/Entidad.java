@@ -47,6 +47,6 @@ public class Entidad {
 
     // Relaciones
 
-    @OneToMany(mappedBy = "entidad")
+    @OneToMany(mappedBy = "entidad", fetch = FetchType.LAZY)
     private Collection<EntidadDispositivo> entidadDispositivoCol;
 }

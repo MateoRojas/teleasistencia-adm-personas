@@ -24,8 +24,8 @@ public class TeleasistenciaException extends RuntimeException {
         TeleasistenciaException.of(error).throwException();
     }
 
-    public static Builder of(Error error) {
-        return new Builder(error);
+    public static TeleasistenciaException of(Error error) {
+        return new Builder(error).build();
     }
 
     private static class Builder {

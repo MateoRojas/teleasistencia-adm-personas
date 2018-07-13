@@ -30,7 +30,7 @@ public class PersonaServicio {
 
         this.validacionServicio.validarObjeto(personaVO, TipoError.PERONSA_NULA);
 
-        this.validarNumeroCedula(personaVO.getCedula());
+        this.validarNumeroCedulaCreacion(personaVO.getCedula());
 
         Persona persona = this.guardarPersona(personaVO);
 
@@ -39,12 +39,50 @@ public class PersonaServicio {
                 .setEstado(persona.getEstado());
     }
 
-    private void validarNumeroCedula(String cedula) {
+    private void validarNumeroCedulaCreacion(String cedula) {
 
         if(Long.compare(0, this.personaRepositorio.countByCedula(cedula)) != 0) {
 
             TeleasistenciaException.throwException(TipoError.PERSONA_CEDULA_REPETIDA.build());
         }
+    }
+
+    public PersonaVO actualizaPersonaPorId(PersonaVO personaVO) {
+
+        this.validarPersonaActualizacion(personaVO);
+
+        this.personaRepositorio.save(this.mapper.map(personaVO, Persona.class));
+
+        return personaVO;
+    }
+
+    private void validarPersonaActualizacion(PersonaVO personaVO) {
+
+        this.validacionServicio.validarNulo(personaVO.getId(), TipoError.PERSONA_ID_NULO);
+
+        this.validacionServicio.validarObjeto(personaVO, TipoError.PERONSA_NULA);
+
+        this.validarCedulaActualizacion(personaVO.getCedula(), personaVO.getId());
+    }
+
+    private void validarCedulaActualizacion(String cedula, Integer id) {
+
+        Integer resultado = this.personaRepositorio.findIdByCedula(cedula);
+
+        if(resultado != null && resultado.compareTo(id) != 0) {
+
+            TeleasistenciaException.throwException(TipoError.PERSONA_CEDULA_REPETIDA.build());
+        }
+
+    }
+
+    public PersonaVO buscarPersonaPorId(Integer id) {
+
+        Persona persona = personaRepositorio
+                .findById(id)
+                .orElseThrow(() -> TeleasistenciaException.of(TipoError.PERSONA_NO_ENCONTRADA.build()));
+
+        return this.mapper.map(persona, PersonaVO.class);
     }
 
     private Persona guardarPersona(PersonaVO personaVO) {

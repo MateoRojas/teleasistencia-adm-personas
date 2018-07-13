@@ -40,10 +40,6 @@ public class ErrorHandler {
 
     private static HttpStatus codigoEstado(CategoriaError categoria) {
 
-        if(CategoriaError.SIN_CONTENIDO.equals(categoria)) {
-            return HttpStatus.NO_CONTENT;
-        }
-
         if(CategoriaError.REQUERIMIENTO_INVALIDO.equals(categoria)) {
             return HttpStatus.BAD_REQUEST;
         }

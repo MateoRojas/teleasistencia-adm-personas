@@ -30,7 +30,7 @@ public class PersonaServicio {
 
         this.validacionServicio.validarObjeto(personaVO, TipoError.PERONSA_NULA);
 
-        this.validarNumeroCedulaCreacion(personaVO.getCedula());
+        this.validarCedulaCreacion(personaVO.getCedula());
 
         Persona persona = this.guardarPersona(personaVO);
 
@@ -39,7 +39,7 @@ public class PersonaServicio {
                 .setEstado(persona.getEstado());
     }
 
-    private void validarNumeroCedulaCreacion(String cedula) {
+    private void validarCedulaCreacion(String cedula) {
 
         if(Long.compare(0, this.personaRepositorio.countByCedula(cedula)) != 0) {
 

@@ -30,10 +30,7 @@ public class ValidacionServicio {
 
     public <T> Boolean validarNulo(T objeto, TipoError error) {
 
-        if(objeto == null) {
-
-            TeleasistenciaException.throwException(error.build());
-        }
+        if(objeto == null) TeleasistenciaException.throwException(error.build());
 
         return Boolean.TRUE;
     }
@@ -42,10 +39,25 @@ public class ValidacionServicio {
 
         this.validarNulo(string, error);
 
-        if(string.trim().isEmpty()) {
+        if(string.trim().isEmpty()) TeleasistenciaException.throwException(error.build());
 
-            TeleasistenciaException.throwException(error.build());
-        }
+        return Boolean.TRUE;
+    }
+
+    public Boolean validarMayorQue(Integer numero, Integer base, TipoError error) {
+
+        this.validarNulo(numero, error);
+
+        if(Integer.compare(numero, base) <= 0) TeleasistenciaException.throwException(error.build());
+
+        return Boolean.TRUE;
+    }
+
+    public Boolean validarMayorIgualQue(Integer numero, Integer base, TipoError error) {
+
+        this.validarNulo(numero, error);
+
+        if(Integer.compare(numero, base) < 0) TeleasistenciaException.throwException(error.build());
 
         return Boolean.TRUE;
     }

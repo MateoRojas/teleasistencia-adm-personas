@@ -57,6 +57,8 @@ public class Persona {
 
     private String email;
 
+    private String nombreCompleto;
+
     // Auditoria
 
     private Integer estado;

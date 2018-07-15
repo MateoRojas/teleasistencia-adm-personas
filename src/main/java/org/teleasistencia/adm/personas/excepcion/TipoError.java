@@ -19,7 +19,9 @@ public enum TipoError implements Payload {
     CONTACTO_NULO(CategoriaError.REQUERIMIENTO_INVALIDO, "Error de objeto nulo", "El contacto no puede ser nulo"),
     ID_DISPOSITIVO_NULO(CategoriaError.REQUERIMIENTO_INVALIDO, "Error al buscar los contactos", "El id del dispositivo no puede ser nulo"),
     PERSONA_NO_ENCONTRADA(CategoriaError.REQUERIMIENTO_INVALIDO, "Error al buscar la persona", "No se encontro ninguna persona asociada al id provisto"),
-    PERSONA_ID_NULO(CategoriaError.REQUERIMIENTO_INVALIDO, "Error al actulizar la persona", "La persona no puede tener un id vacio");
+    PERSONA_ID_NULO(CategoriaError.REQUERIMIENTO_INVALIDO, "Error al actulizar la persona", "La persona no puede tener un id vacio"),
+    NUMERO_PAGINA_INVALIDO(CategoriaError.REQUERIMIENTO_INVALIDO, "Error realizar la busqueda", "El numero de página no es valido"),
+    MAXIMO_PAGINA_INVALIDO(CategoriaError.REQUERIMIENTO_INVALIDO, "Error realizar la busqueda", "El maximo de página no es valido");
 
     private CategoriaError categoria;
 

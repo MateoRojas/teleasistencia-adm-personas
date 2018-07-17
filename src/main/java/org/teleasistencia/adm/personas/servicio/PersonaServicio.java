@@ -19,6 +19,7 @@ import org.teleasistencia.adm.personas.vo.respuestas.ResultadoPaginado;
 import java.util.Date;
 
 import static org.teleasistencia.adm.personas.comun.TeleasistenciaConstantes.ESPACIO;
+import static org.teleasistencia.adm.personas.comun.TeleasistenciaConstantes.PORCENTAJE;
 
 @Service
 @Transactional
@@ -131,7 +132,7 @@ public class PersonaServicio {
         Persona busqueda = this.armarPersonaFiltrosBusqueda(cedula, nombre);
         ExampleMatcher matcher = this.armarCondicionesPersonaBusquedaFiltros();
 
-        return this.armarResultadoPaginado(this.obtenerPersonaPorFiltrosPaginado(busqueda, matcher, pagina, maximo));
+        return this.armarResultadoPaginado(this.obtenerPersonaPorFiltrosPaginado(busqueda, matcher, pagina - 1, maximo));
     }
 
     private Page<PersonaVO> obtenerPersonaPorFiltrosPaginado(Persona busqueda, ExampleMatcher matcher, Integer pagina, Integer maximo) {
@@ -145,16 +146,15 @@ public class PersonaServicio {
         return new ResultadoPaginado<T>()
                 .setDatos(resultado.getContent())
                 .setMaximoPagina(resultado.getSize())
-                .setNumeroPagina(resultado.getNumber())
+                .setNumeroPagina(resultado.getNumber() + 1)
                 .setTotalPaginas(resultado.getTotalPages())
                 .setTotalElementos(Math.toIntExact(resultado.getTotalElements()));
     }
 
     private void validarBuscarPersonaPorFiltros(Integer pagina, Integer maximo) {
 
-        this.validacionServicio.validarMayorIgualQue(pagina, 0, TipoError.NUMERO_PAGINA_INVALIDO);
+        this.validacionServicio.validarMayorQue(pagina, 0, TipoError.NUMERO_PAGINA_INVALIDO);
         this.validacionServicio.validarMayorQue(maximo, 0, TipoError.MAXIMO_PAGINA_INVALIDO);
-
     }
 
     private ExampleMatcher armarCondicionesPersonaBusquedaFiltros() {
@@ -171,8 +171,8 @@ public class PersonaServicio {
 
         Persona persona = new Persona();
 
-        if(cedula != null && !cedula.trim().isEmpty()) persona.setCedula(cedula);
-        if(nombre != null && !nombre.trim().isEmpty()) persona.setNombreCompleto(nombre);
+        if(cedula != null && !cedula.trim().isEmpty()) persona.setCedula(cedula.trim());
+        if(nombre != null && !nombre.trim().isEmpty()) persona.setNombreCompleto(nombre.trim().replace(ESPACIO, PORCENTAJE));
 
         return persona;
     }
